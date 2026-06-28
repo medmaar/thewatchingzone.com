@@ -1,4 +1,4 @@
-name: Deploy to Cloudflare Pages
+name: Deploy to Cloudflare
 
 on:
   push:
@@ -25,24 +25,7 @@ jobs:
           echo "account_id=$ACCOUNT_ID" >> $GITHUB_OUTPUT
           echo "✅ Account: $ACCOUNT_ID"
 
-      - name: Create Pages project if not exists
-        run: |
-          RESULT=$(curl -s -X POST \
-            "https://api.cloudflare.com/client/v4/accounts/${{ steps.cf.outputs.account_id }}/pages/projects" \
-            -H "Authorization: Bearer ${{ secrets.CF_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            -d '{"name":"thewatchingzone","production_branch":"main"}')
-          echo "$RESULT" | python3 -c "
-          import sys,json
-          d=json.load(sys.stdin)
-          if d.get('success'):
-              print('✅ Project created')
-          else:
-              msg = d.get('errors',[{}])[0].get('message','')
-              print('ℹ️ ', msg if msg else str(d))
-          "
-
-      - name: Deploy to Cloudflare Pages
+      - name: Deploy Pages project
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CF_TOKEN }}
@@ -51,6 +34,31 @@ jobs:
           directory: .
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           branch: main
+
+      - name: Deploy contact Worker
+        run: |
+          RESULT=$(curl -s -X PUT \
+            "https://api.cloudflare.com/client/v4/accounts/${{ steps.cf.outputs.account_id }}/workers/scripts/thewatchingzone-contact" \
+            -H "Authorization: Bearer ${{ secrets.CF_TOKEN }}" \
+            -F 'metadata={"main_module":"worker.js","compatibility_date":"2024-01-01","compatibility_flags":["nodejs_compat"]};type=application/json' \
+            -F "worker.js=@worker/worker.js;type=application/javascript+module")
+          echo "$RESULT" | python3 -c "
+          import sys,json
+          d=json.load(sys.stdin)
+          if d.get('success'): print('✅ Worker deployed: thewatchingzone-contact')
+          else: print('❌ Error:', d.get('errors')); exit(1)
+          "
+
+      - name: Enable worker subdomain
+        run: |
+          curl -s -X POST \
+            "https://api.cloudflare.com/client/v4/accounts/${{ steps.cf.outputs.account_id }}/workers/scripts/thewatchingzone-contact/subdomain" \
+            -H "Authorization: Bearer ${{ secrets.CF_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"enabled":true}' | python3 -c "
+          import sys,json; d=json.load(sys.stdin)
+          print('✅ Subdomain enabled' if d.get('success') else '⚠️ Subdomain:', d.get('errors'))
+          "
 
       - name: Connect custom domain
         run: |
@@ -64,10 +72,9 @@ jobs:
           import sys,json,os
           d=json.load(sys.stdin)
           dom=os.environ.get('DOMAIN','')
-          if d.get('success'):
-              print(f'✅ Connected: {dom}')
+          if d.get('success'): print(f'✅ Connected: {dom}')
           else:
-              msg=d.get('errors',[{}])[0].get('message','')
-              print(f'ℹ️  {dom}:', msg if msg else str(d))
+            msg=d.get('errors',[{}])[0].get('message','')
+            print(f'ℹ️  {dom}:', msg if msg else str(d))
           " DOMAIN="$DOMAIN"
           done

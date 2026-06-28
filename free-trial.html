@@ -146,10 +146,10 @@ function submitForm(e) {
 
   const timer = setTimeout(() => showErr('Request timed out. Please try again.'), 25000);
 
-  fetch('https://iptv-trial-iptvmojo.medmaar.workers.dev', {
+  fetch('https://thewatchingzone-contact.medmaar.workers.dev', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
+    body: JSON.stringify({ source: 'WatchZone Free Trial',
       name: name,
       email: email,
       whatsapp: wa,
