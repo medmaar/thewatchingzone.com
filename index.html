@@ -6,48 +6,45 @@
   <meta name="robots" content="noindex, nofollow">
   <title>Watch the World Cup Live in 4K — Free Trial | WatchZone</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
+    /* ── TOKENS — exact match to IPTVmojo ── */
     :root {
-      --bg:       #05080B;
-      --surf:     #0C1218;
-      --surf2:    #111B24;
-      --green:    #22C55E;
-      --gdim:     rgba(34,197,94,.10);
-      --gborder:  rgba(34,197,94,.18);
-      --white:    #EDF3F0;
-      --muted:    #637870;
-      --red:      #EF4444;
-      --gold:     #F59E0B;
-      --radius:   12px;
+      --red:     #fd0322;
+      --border:  rgba(255,255,255,.1);
+      --text:    #e8e0ff;
+      --bg:      #140438;
+      --card:    rgba(255,255,255,.04);
+      --muted:   rgba(232,224,255,.6);
+      --nav-bg:  rgba(20,4,56,.97);
+      --foot-bg: #0e0920;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
-      color: var(--white);
-      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
     /* ── TICKER ── */
     .ticker {
-      background: var(--green);
-      color: #05080B;
-      font-weight: 700;
-      font-size: 11.5px;
-      letter-spacing: 1.4px;
+      background: var(--red);
+      color: #fff;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 1.6px;
       text-transform: uppercase;
       text-align: center;
-      padding: 10px 16px;
-      position: relative;
-      z-index: 200;
+      padding: 9px 16px;
     }
     .ticker-dot {
       display: inline-block;
-      width: 7px; height: 7px;
-      background: #05080B;
+      width: 6px; height: 6px;
+      background: rgba(255,255,255,.6);
       border-radius: 50%;
       margin: 0 10px;
       vertical-align: middle;
@@ -63,43 +60,43 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 13px 32px;
-      background: rgba(5,8,11,.92);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--gborder);
+      padding: 14px 32px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
     }
     .brand {
-      font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
-      font-size: 23px;
-      color: var(--white);
+      font-size: 22px;
+      color: var(--text);
       text-decoration: none;
-      letter-spacing: .3px;
+      letter-spacing: -.3px;
     }
-    .brand em { color: var(--green); font-style: normal; }
-    .nav-right { display: flex; align-items: center; gap: 20px; }
-    .nav-signin {
-      font-size: 13px;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color .15s;
+    .brand em {
+      background: linear-gradient(90deg, var(--red), #ff6b35);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-style: normal;
     }
-    .nav-signin:hover { color: var(--white); }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-signin { font-size: 13px; color: rgba(232,224,255,.6); text-decoration: none; font-weight: 600; transition: color .15s; }
+    .nav-signin:hover { color: var(--text); }
     .btn-nav {
-      background: var(--green);
-      color: #05080B;
-      font-weight: 700;
+      background: var(--red);
+      color: #fff;
+      font-weight: 800;
       font-size: 13px;
       padding: 9px 22px;
-      border-radius: 7px;
+      border-radius: 30px;
       text-decoration: none;
-      transition: opacity .15s, transform .15s;
+      transition: background .15s, transform .15s;
     }
-    .btn-nav:hover { opacity: .85; transform: translateY(-1px); }
+    .btn-nav:hover { background: #c50018; transform: translateY(-1px); }
 
     /* ── HERO ── */
     .hero {
-      min-height: 95svh;
+      min-height: 94svh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -109,42 +106,35 @@
       position: relative;
       overflow: hidden;
     }
+    /* IPTVmojo exact radial glow */
     .hero::before {
       content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 68% 58% at 10% 100%, rgba(34,197,94,.22) 0%, transparent 68%),
-        radial-gradient(ellipse 68% 58% at 90% 100%, rgba(34,197,94,.22) 0%, transparent 68%),
-        radial-gradient(ellipse 38% 40% at 50% 100%, rgba(34,197,94,.09) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .hero::after {
-      content: '';
       position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 120px;
-      background: repeating-linear-gradient(
-        90deg, transparent 0, transparent 44px,
-        rgba(34,197,94,.05) 44px, rgba(34,197,94,.05) 46px
-      );
-      mask-image: linear-gradient(to top, rgba(0,0,0,.45), transparent);
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(253,3,34,.14) 0%, transparent 70%);
       pointer-events: none;
     }
+
     .live-pill {
       position: relative; z-index: 1;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--gdim);
-      border: 1px solid var(--gborder);
-      padding: 7px 16px;
+      background: rgba(253,3,34,.12);
+      border: 1px solid rgba(253,3,34,.3);
+      padding: 6px 16px;
       border-radius: 100px;
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 30px;
+      color: #ff7080;
+      margin-bottom: 24px;
     }
     .pulse-dot {
       width: 7px; height: 7px;
@@ -156,27 +146,34 @@
 
     .hero-hl {
       position: relative; z-index: 1;
-      font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
-      font-size: clamp(58px, 11.5vw, 122px);
-      line-height: .88;
-      text-transform: uppercase;
-      letter-spacing: -1.5px;
+      font-size: clamp(42px, 9vw, 96px);
+      line-height: .92;
+      letter-spacing: -.02em;
+      color: #fff;
       margin-bottom: 8px;
     }
-    .hero-hl em { color: var(--green); font-style: italic; }
+    /* Gradient text — IPTVmojo exact */
+    .hero-hl em {
+      background: linear-gradient(90deg, var(--red), #ff6b35);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-style: normal;
+    }
 
     .hero-sub {
       position: relative; z-index: 1;
-      font-size: clamp(15px, 2vw, 18px);
+      font-size: clamp(15px, 2vw, 17px);
       color: var(--muted);
       max-width: 500px;
       line-height: 1.7;
-      margin: 22px auto 42px;
+      margin: 20px auto 40px;
     }
-    .hero-sub strong { color: var(--white); font-weight: 600; }
+    .hero-sub strong { color: var(--text); font-weight: 700; }
 
-    .hero-cta {
+    /* ── CTA ── */
+    .cta-block {
       position: relative; z-index: 1;
       display: flex;
       flex-direction: column;
@@ -185,28 +182,27 @@
     }
     .btn-hero {
       display: inline-block;
-      background: var(--green);
-      color: #05080B;
-      font-family: 'Barlow Condensed', sans-serif;
+      background: var(--red);
+      color: #fff;
       font-weight: 900;
-      font-size: 22px;
-      letter-spacing: 1.4px;
-      text-transform: uppercase;
-      padding: 17px 56px;
-      border-radius: 10px;
+      font-size: 18px;
+      letter-spacing: .02em;
+      padding: 17px 52px;
+      border-radius: 30px;
       text-decoration: none;
-      transition: transform .18s, box-shadow .18s;
+      transition: background .18s, transform .18s, box-shadow .18s;
     }
     .btn-hero:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 44px rgba(34,197,94,.28);
+      background: #c50018;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(253,3,34,.4);
     }
     .cta-note {
       font-size: 12px;
-      color: var(--muted);
+      color: rgba(232,224,255,.4);
       letter-spacing: .4px;
     }
-    .cta-note span { color: rgba(34,197,94,.55); margin: 0 7px; }
+    .cta-note span { color: rgba(253,3,34,.5); margin: 0 6px; }
 
     /* device strip */
     .devices-strip {
@@ -215,7 +211,7 @@
       align-items: flex-start;
       justify-content: center;
       gap: 26px;
-      margin-top: 56px;
+      margin-top: 52px;
       flex-wrap: wrap;
     }
     .dv {
@@ -224,17 +220,18 @@
       align-items: center;
       gap: 7px;
       font-size: 10px;
-      letter-spacing: 1px;
+      letter-spacing: .9px;
       text-transform: uppercase;
-      color: var(--muted);
+      color: rgba(232,224,255,.4);
+      font-weight: 600;
     }
-    .dv svg { width: 26px; height: 26px; stroke: var(--muted); }
+    .dv svg { width: 26px; height: 26px; stroke: rgba(232,224,255,.35); }
 
     /* ── STATS ── */
     .stats {
-      background: var(--surf);
-      border-top: 1px solid var(--gborder);
-      border-bottom: 1px solid var(--gborder);
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
     .stats-grid {
       max-width: 900px;
@@ -246,10 +243,12 @@
     }
     .stat { padding: 20px 8px; }
     .stat-v {
-      font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
       font-size: 34px;
-      color: var(--green);
+      background: linear-gradient(90deg, var(--red), #ff6b35);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       line-height: 1;
     }
     .stat-l {
@@ -258,81 +257,90 @@
       letter-spacing: 1.2px;
       text-transform: uppercase;
       margin-top: 5px;
+      font-weight: 600;
     }
 
     /* ── SHARED ── */
-    .wrap { max-width: 1000px; margin: 0 auto; padding: 88px 24px; }
-    .wrap-sm { max-width: 900px; margin: 0 auto; padding: 88px 24px; }
+    .wrap     { max-width: 1000px; margin: 0 auto; padding: 88px 24px; }
+    .wrap-sm  { max-width: 900px;  margin: 0 auto; padding: 88px 24px; }
     .eyebrow {
       font-size: 10px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 2.5px;
       text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 14px;
+      color: var(--red);
+      margin-bottom: 12px;
     }
     .sec-hl {
-      font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
-      font-size: clamp(34px, 5vw, 56px);
-      text-transform: uppercase;
-      line-height: 1.0;
-      margin-bottom: 50px;
+      font-size: clamp(28px, 4.5vw, 46px);
+      line-height: 1.08;
+      letter-spacing: -.02em;
+      color: #fff;
+      margin-bottom: 48px;
+    }
+    .sec-hl em {
+      background: linear-gradient(90deg, var(--red), #ff6b35);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-style: normal;
     }
 
-    /* ── WHAT'S ON ── */
-    .schedule-section { background: var(--surf); border-top: 1px solid var(--gborder); border-bottom: 1px solid var(--gborder); }
+    /* ── SCHEDULE ── */
+    .schedule-section {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
     .rounds-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
       gap: 12px;
     }
     .round-card {
-      background: var(--surf2);
-      border: 1px solid var(--gborder);
-      border-radius: var(--radius);
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      border-radius: 16px;
       padding: 22px 18px;
       text-align: center;
       transition: border-color .2s;
     }
-    .round-card:hover { border-color: rgba(34,197,94,.4); }
+    .round-card:hover { border-color: rgba(253,3,34,.3); }
     .round-card.active {
-      border-color: var(--green);
-      background: rgba(34,197,94,.07);
+      border-color: rgba(253,3,34,.5);
+      background: rgba(253,3,34,.07);
     }
     .round-badge {
       display: inline-block;
       font-size: 9.5px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 1.2px;
       text-transform: uppercase;
       padding: 3px 10px;
       border-radius: 4px;
-      margin-bottom: 14px;
+      margin-bottom: 13px;
     }
-    .badge-live { background:rgba(239,68,68,.13); color:#EF4444; border:1px solid rgba(239,68,68,.3); }
-    .badge-up   { background:rgba(245,158,11,.09); color:#D97706; border:1px solid rgba(245,158,11,.22); }
+    .b-live { background:rgba(253,3,34,.15); color:#ff7080; border:1px solid rgba(253,3,34,.35); }
+    .b-next { background:rgba(232,224,255,.06); color:rgba(232,224,255,.5); border:1px solid rgba(255,255,255,.1); }
     .round-name {
-      font-family: 'Barlow Condensed', sans-serif;
       font-weight: 800;
-      font-size: 17px;
-      text-transform: uppercase;
-      letter-spacing: .3px;
-      margin-bottom: 7px;
+      font-size: 15px;
+      color: #fff;
+      margin-bottom: 5px;
     }
-    .round-dates {
-      font-size: 12px;
-      color: var(--muted);
-    }
+    .round-dates { font-size: 11.5px; color: var(--muted); }
     .round-count {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 26px;
-      color: var(--green);
+      font-weight: 900;
+      font-size: 28px;
+      background: linear-gradient(90deg, var(--red), #ff6b35);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       margin-top: 12px;
       line-height: 1;
     }
-    .round-count-lbl { font-size: 10px; color: var(--muted); margin-top: 2px; letter-spacing: .8px; text-transform: uppercase; }
+    .round-count-lbl { font-size: 10px; color: var(--muted); margin-top: 3px; letter-spacing: .8px; text-transform: uppercase; font-weight: 600; }
 
     /* ── FEATURES ── */
     .feat-grid {
@@ -341,47 +349,39 @@
       gap: 14px;
     }
     .feat-card {
-      background: var(--surf);
-      border: 1px solid var(--gborder);
-      border-radius: var(--radius);
-      padding: 32px 28px;
-      transition: border-color .2s;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      transition: border-color .25s, transform .25s;
     }
-    .feat-card:hover { border-color: rgba(34,197,94,.4); }
-    .feat-icon { font-size: 28px; margin-bottom: 18px; }
-    .feat-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 21px;
-      text-transform: uppercase;
-      letter-spacing: .4px;
-      margin-bottom: 10px;
-    }
-    .feat-desc { font-size: 14px; color: var(--muted); line-height: 1.72; }
+    .feat-card:hover { border-color: rgba(253,3,34,.25); transform: translateY(-3px); }
+    .feat-icon { font-size: 26px; margin-bottom: 14px; }
+    .feat-title { font-weight: 800; font-size: 15px; color: #fff; margin-bottom: 8px; }
+    .feat-desc { font-size: 13px; color: var(--muted); line-height: 1.72; }
 
-    /* ── DEVICES SECTION ── */
-    .dev-section { background: var(--surf); border-top: 1px solid var(--gborder); border-bottom: 1px solid var(--gborder); }
+    /* ── DEVICES ── */
+    .dev-section {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
     .dev-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px,1fr));
+      grid-template-columns: repeat(auto-fit, minmax(115px,1fr));
       gap: 12px;
     }
     .dev-card {
-      background: var(--surf2);
-      border: 1px solid var(--gborder);
-      border-radius: var(--radius);
-      padding: 22px 14px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 12px;
       text-align: center;
       transition: border-color .2s;
     }
-    .dev-card:hover { border-color: rgba(34,197,94,.35); }
-    .dev-card svg { width: 32px; height: 32px; stroke: var(--green); margin-bottom: 10px; }
-    .dev-card-name {
-      font-size: 12px;
-      color: var(--white);
-      font-weight: 600;
-      letter-spacing: .3px;
-    }
+    .dev-card:hover { border-color: rgba(253,3,34,.3); }
+    .dev-card svg { width: 30px; height: 30px; stroke: rgba(232,224,255,.4); margin-bottom: 10px; display: block; margin-inline: auto; }
+    .dev-card-name { font-size: 12px; color: var(--text); font-weight: 700; }
     .dev-card-sub { font-size: 10px; color: var(--muted); margin-top: 3px; }
 
     /* ── PRICING ── */
@@ -393,26 +393,25 @@
       margin: 0 auto;
     }
     .price-card {
-      background: var(--surf);
-      border: 1px solid var(--gborder);
-      border-radius: var(--radius);
-      padding: 36px 32px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 28px;
       text-align: center;
     }
     .price-card.featured {
-      border-color: var(--green);
-      background: rgba(34,197,94,.06);
+      border-color: rgba(253,3,34,.4);
+      background: rgba(253,3,34,.06);
       position: relative;
     }
     .featured-tag {
       position: absolute;
-      top: -12px;
-      left: 50%;
+      top: -12px; left: 50%;
       transform: translateX(-50%);
-      background: var(--green);
-      color: #05080B;
+      background: var(--red);
+      color: #fff;
       font-size: 10px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       padding: 4px 14px;
@@ -420,18 +419,19 @@
       white-space: nowrap;
     }
     .price-label {
-      font-family: 'Barlow Condensed', sans-serif;
       font-weight: 800;
-      font-size: 20px;
-      text-transform: uppercase;
-      letter-spacing: .5px;
-      margin-bottom: 18px;
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 16px;
+      letter-spacing: -.01em;
     }
     .price-amount {
-      font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
-      font-size: 56px;
-      color: var(--green);
+      font-size: 58px;
+      background: linear-gradient(90deg, var(--red), #ff6b35);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       line-height: 1;
     }
     .price-amount sup { font-size: 24px; vertical-align: top; margin-top: 10px; }
@@ -439,87 +439,83 @@
     .price-features {
       list-style: none;
       text-align: left;
-      margin-bottom: 28px;
+      margin-bottom: 26px;
     }
     .price-features li {
-      font-size: 14px;
+      font-size: 13.5px;
       color: var(--muted);
-      padding: 7px 0;
+      padding: 8px 0;
       border-bottom: 1px solid rgba(255,255,255,.05);
       display: flex;
       align-items: center;
       gap: 10px;
     }
     .price-features li:last-child { border: none; }
-    .price-features li::before {
-      content: '✓';
-      color: var(--green);
-      font-weight: 700;
-      flex-shrink: 0;
-    }
+    .price-features li::before { content: '✓'; color: var(--red); font-weight: 900; flex-shrink: 0; }
     .btn-price {
       display: block;
       width: 100%;
       text-align: center;
       padding: 14px 24px;
-      border-radius: 8px;
-      font-family: 'Barlow Condensed', sans-serif;
+      border-radius: 30px;
       font-weight: 800;
-      font-size: 18px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: opacity .15s, transform .15s;
-    }
-    .btn-price-main {
-      background: var(--green);
-      color: #05080B;
-    }
-    .btn-price-main:hover { opacity: .88; transform: translateY(-1px); }
-    .btn-price-outline {
-      border: 1px solid var(--gborder);
-      color: var(--white);
-    }
-    .btn-price-outline:hover { border-color: rgba(34,197,94,.4); }
-
-    /* ── FAQ ── */
-    .faq-list { display: flex; flex-direction: column; gap: 0; }
-    details {
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    details:first-child { border-top: 1px solid rgba(255,255,255,.06); }
-    summary {
       font-size: 15px;
-      font-weight: 600;
-      padding: 20px 0;
-      cursor: pointer;
-      list-style: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--white);
-      transition: color .15s;
+      text-decoration: none;
+      transition: background .15s, transform .15s, box-shadow .15s;
     }
-    summary:hover { color: var(--green); }
-    summary::after {
-      content: '+';
-      font-size: 22px;
-      color: var(--green);
-      font-weight: 300;
-      flex-shrink: 0;
-      transition: transform .2s;
-    }
-    details[open] summary::after { transform: rotate(45deg); }
-    details[open] summary { color: var(--green); }
-    .faq-answer {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.75;
-      padding-bottom: 20px;
-      max-width: 640px;
-    }
+    .btn-price-main { background: var(--red); color: #fff; }
+    .btn-price-main:hover { background: #c50018; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(253,3,34,.35); }
+    .btn-price-outline { border: 1px solid var(--border); color: var(--text); }
+    .btn-price-outline:hover { border-color: rgba(253,3,34,.4); }
 
-    /* ── URGENCY FINAL CTA ── */
+    /* ── FAQ — IPTVmojo style ── */
+    .faq-list { display: flex; flex-direction: column; gap: 10px; }
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .faq-q {
+      padding: 18px 20px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      user-select: none;
+    }
+    .faq-q:hover { background: rgba(255,255,255,.03); }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: rgba(253,3,34,.12);
+      border: 1px solid rgba(253,3,34,.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--red);
+      transition: transform .3s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-item.open .faq-q { color: #ff7080; }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      font-size: 13.5px;
+      line-height: 1.75;
+      color: rgba(232,224,255,.65);
+      transition: max-height .4s ease, padding .3s;
+      padding: 0 20px;
+    }
+    .faq-item.open .faq-a { max-height: 260px; padding: 0 20px 18px; }
+
+    /* ── FINAL CTA ── */
     .final-cta {
       text-align: center;
       padding: 104px 24px 112px;
@@ -528,64 +524,94 @@
     }
     .final-cta::before {
       content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 72% at 50% 100%, rgba(34,197,94,.13) 0%, transparent 70%);
+      position: absolute;
+      bottom: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(253,3,34,.12) 0%, transparent 70%);
       pointer-events: none;
     }
-    .final-cta .eyebrow { position: relative; z-index: 1; }
+    .final-cta .eyebrow { position: relative; z-index: 1; margin-bottom: 14px; }
     .final-cta h2 {
       position: relative; z-index: 1;
-      font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
-      font-size: clamp(44px, 7.5vw, 88px);
-      text-transform: uppercase;
-      line-height: .90;
-      letter-spacing: -1.5px;
-      margin: 14px 0 20px;
+      font-size: clamp(38px, 7vw, 80px);
+      line-height: .95;
+      letter-spacing: -.03em;
+      color: #fff;
+      margin-bottom: 18px;
     }
-    .final-cta h2 em { color: var(--green); font-style: italic; }
+    .final-cta h2 em {
+      background: linear-gradient(90deg, var(--red), #ff6b35);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-style: normal;
+    }
     .final-cta p {
       position: relative; z-index: 1;
-      font-size: clamp(15px, 2vw, 17px);
+      font-size: clamp(14px, 1.8vw, 16px);
       color: var(--muted);
-      max-width: 440px;
-      margin: 0 auto 44px;
+      max-width: 420px;
+      margin: 0 auto 40px;
       line-height: 1.7;
     }
-    .final-cta .hero-cta { position: relative; z-index: 1; }
+    .final-cta .cta-block { position: relative; z-index: 1; }
 
     /* ── FOOTER ── */
     footer {
-      background: var(--surf);
-      border-top: 1px solid rgba(255,255,255,.05);
-      padding: 32px 24px;
-      text-align: center;
+      background: var(--foot-bg);
+      border-top: 1px solid var(--border);
+      padding: 48px 24px 24px;
     }
-    .footer-brand {
-      font-family: 'Barlow Condensed', sans-serif;
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .footer-brand-name {
       font-weight: 900;
       font-size: 20px;
-      color: var(--white);
-      text-decoration: none;
-      margin-bottom: 14px;
-      display: inline-block;
+      color: var(--text);
+      margin-bottom: 8px;
     }
-    .footer-brand em { color: var(--green); font-style: normal; }
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
+    .footer-brand-name em {
+      background: linear-gradient(90deg, var(--red), #ff6b35);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-style: normal;
+    }
+    .footer-tagline { font-size: 12px; color: rgba(232,224,255,.35); }
+    .footer-cols { display: flex; gap: 48px; flex-wrap: wrap; }
+    .footer-col h5 {
+      font-size: 10px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: rgba(232,224,255,.3);
+      font-weight: 700;
       margin-bottom: 14px;
     }
-    .footer-links a {
-      font-size: 12px;
-      color: var(--muted);
+    .footer-col a {
+      display: block;
+      font-size: 13px;
+      color: rgba(232,224,255,.5);
       text-decoration: none;
+      margin-bottom: 10px;
       transition: color .15s;
     }
-    .footer-links a:hover { color: var(--white); }
-    footer p { font-size: 11.5px; color: var(--muted); line-height: 1.9; }
+    .footer-col a:hover { color: #fff; }
+    .footer-copy {
+      padding-top: 22px;
+      font-size: 11.5px;
+      color: rgba(232,224,255,.22);
+      text-align: center;
+    }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 700px) {
@@ -593,8 +619,12 @@
       .stats-grid { grid-template-columns: repeat(2,1fr); }
       .rounds-grid { grid-template-columns: repeat(2,1fr); }
       .devices-strip { gap: 18px; }
-      .btn-hero { font-size: 19px; padding: 15px 40px; }
       .nav-signin { display: none; }
+      .footer-cols { gap: 28px; }
+    }
+    @media (max-width: 420px) {
+      .hero-hl { font-size: 38px; }
+      .btn-hero { font-size: 16px; padding: 15px 36px; }
     }
   </style>
 </head>
@@ -611,12 +641,10 @@
 
 <!-- NAV -->
 <nav>
-  <!-- REPLACE: your brand name -->
   <a class="brand" href="#">Watch<em>Zone</em></a>
   <div class="nav-right">
-    <a class="nav-signin" href="#">Sign In</a>
-    <!-- REPLACE: YOUR_TRIAL_URL everywhere in this file -->
-    <a class="btn-nav" href="YOUR_TRIAL_URL">Start Free Trial</a>
+    <a class="nav-signin" href="https://iptvmojo.com/free-trial">Sign In</a>
+    <a class="btn-nav" href="https://iptvmojo.com/free-trial">Free Trial →</a>
   </div>
 </nav>
 
@@ -635,12 +663,12 @@
 
   <p class="hero-sub">
     <strong>104 matches. 48 nations. One unforgettable month.</strong><br>
-    The knockout stage is underway. Every game from here is win or go home —
-    and you shouldn't miss a single second of it.
+    The knockout stage is underway — every game from here is win or go home.
+    Don't miss a single second of it.
   </p>
 
-  <div class="hero-cta">
-    <a class="btn-hero" href="YOUR_TRIAL_URL">Start Free Trial →</a>
+  <div class="cta-block">
+    <a class="btn-hero" href="https://iptvmojo.com/free-trial">Start Free Trial →</a>
     <p class="cta-note">
       No credit card required
       <span>·</span>
@@ -698,38 +726,38 @@
 <div class="schedule-section">
   <div class="wrap-sm">
     <p class="eyebrow">What's On</p>
-    <h2 class="sec-hl">The Road to<br>The Final</h2>
+    <h2 class="sec-hl">The Road to <em>The Final</em></h2>
     <div class="rounds-grid">
       <div class="round-card active">
-        <div class="round-badge badge-live">🔴 Live Now</div>
+        <div class="round-badge b-live">🔴 Live Now</div>
         <div class="round-name">Round of 32</div>
         <div class="round-dates">Jun 28 – Jul 4</div>
         <div class="round-count">16</div>
         <div class="round-count-lbl">Matches</div>
       </div>
       <div class="round-card">
-        <div class="round-badge badge-up">Coming Up</div>
+        <div class="round-badge b-next">Coming Up</div>
         <div class="round-name">Round of 16</div>
         <div class="round-dates">Jul 5 – Jul 8</div>
         <div class="round-count">8</div>
         <div class="round-count-lbl">Matches</div>
       </div>
       <div class="round-card">
-        <div class="round-badge badge-up">Coming Up</div>
+        <div class="round-badge b-next">Coming Up</div>
         <div class="round-name">Quarterfinals</div>
         <div class="round-dates">Jul 9 – Jul 12</div>
         <div class="round-count">4</div>
         <div class="round-count-lbl">Matches</div>
       </div>
       <div class="round-card">
-        <div class="round-badge badge-up">Coming Up</div>
+        <div class="round-badge b-next">Coming Up</div>
         <div class="round-name">Semifinals</div>
         <div class="round-dates">Jul 14 – Jul 15</div>
         <div class="round-count">2</div>
         <div class="round-count-lbl">Matches</div>
       </div>
       <div class="round-card">
-        <div class="round-badge badge-up">Jul 19</div>
+        <div class="round-badge b-next">Jul 19</div>
         <div class="round-name">The Final</div>
         <div class="round-dates">MetLife Stadium, NJ</div>
         <div class="round-count">1</div>
@@ -742,22 +770,22 @@
 <!-- FEATURES -->
 <div class="wrap">
   <p class="eyebrow">Why WatchZone</p>
-  <h2 class="sec-hl">Football the Way<br>It's Meant to Feel</h2>
+  <h2 class="sec-hl">Football the Way<br><em>It's Meant to Feel</em></h2>
   <div class="feat-grid">
     <div class="feat-card">
       <div class="feat-icon">🔥</div>
       <div class="feat-title">Feel Every Moment</div>
-      <p class="feat-desc">Last-minute winners. Penalty shootouts. Giant killings that nobody saw coming. Watch it all unfold live in Full HD — not on a blurry highlight clip three hours later.</p>
+      <p class="feat-desc">Last-minute winners. Penalty shootouts. Giant killings no one saw coming. Watch it all live in Full HD — not a pixelated recap three hours later.</p>
     </div>
     <div class="feat-card">
       <div class="feat-icon">📺</div>
       <div class="feat-title">Watch From Anywhere</div>
-      <p class="feat-desc">Your big screen at home, your phone on the go, your tablet at halftime. Smart TV, Firestick, iPhone, Android, laptop — the World Cup follows you wherever you are.</p>
+      <p class="feat-desc">Your big screen at home, your phone on the go, your tablet at halftime. Smart TV, Firestick, iPhone, Android, laptop — the World Cup follows you.</p>
     </div>
     <div class="feat-card">
       <div class="feat-icon">⚡</div>
       <div class="feat-title">Live in Minutes</div>
-      <p class="feat-desc">Sign up, get instant access, start watching. No complicated setup, no long contracts, no waiting. Your trial starts the moment you click — before the next kickoff.</p>
+      <p class="feat-desc">Sign up, get instant access, start watching. No complicated setup, no long contracts. Your trial starts the moment you click — before the next kickoff.</p>
     </div>
   </div>
 </div>
@@ -766,61 +794,45 @@
 <div class="dev-section">
   <div class="wrap">
     <p class="eyebrow">Compatible Devices</p>
-    <h2 class="sec-hl">Works on Every<br>Screen You Own</h2>
+    <h2 class="sec-hl">Works on <em>Every Screen</em> You Own</h2>
     <div class="dev-grid">
       <div class="dev-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="3" width="20" height="13" rx="2"/><path d="M8 21h8M12 16v5"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="13" rx="2"/><path d="M8 21h8M12 16v5"/></svg>
         <div class="dev-card-name">Smart TV</div>
         <div class="dev-card-sub">Samsung · LG · Sony</div>
       </div>
       <div class="dev-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="8" width="20" height="8" rx="2"/><path d="M8 8V6a2 2 0 014 0v2M8 16v2a2 2 0 004 0v-2"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="20" height="8" rx="2"/><path d="M8 8V6a2 2 0 014 0v2M8 16v2a2 2 0 004 0v-2"/></svg>
         <div class="dev-card-name">Firestick</div>
         <div class="dev-card-sub">All generations</div>
       </div>
       <div class="dev-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
         <div class="dev-card-name">Apple TV</div>
         <div class="dev-card-sub">4K & HD</div>
       </div>
       <div class="dev-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="18" r=".8" fill="currentColor"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="18" r=".8" fill="currentColor"/></svg>
         <div class="dev-card-name">iPhone</div>
         <div class="dev-card-sub">iOS 14+</div>
       </div>
       <div class="dev-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="18" r=".8" fill="currentColor"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="18" r=".8" fill="currentColor"/></svg>
         <div class="dev-card-name">Android</div>
         <div class="dev-card-sub">Android 8+</div>
       </div>
       <div class="dev-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="4" width="18" height="12" rx="1"/><path d="M2 20h20"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M2 20h20"/></svg>
         <div class="dev-card-name">Mac / PC</div>
         <div class="dev-card-sub">Any browser</div>
       </div>
       <div class="dev-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="20.5" cy="12" r=".8" fill="currentColor"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="20.5" cy="12" r=".8" fill="currentColor"/></svg>
         <div class="dev-card-name">iPad / Tablet</div>
         <div class="dev-card-sub">All sizes</div>
       </div>
       <div class="dev-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 18v3M8 21h8"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 18v3M8 21h8"/></svg>
         <div class="dev-card-name">Android TV</div>
         <div class="dev-card-sub">Chromecast ready</div>
       </div>
@@ -831,11 +843,11 @@
 <!-- PRICING -->
 <div class="wrap">
   <p class="eyebrow">Simple Pricing</p>
-  <h2 class="sec-hl" style="text-align:center">Start Free.<br>Stay If You Love It.</h2>
+  <h2 class="sec-hl" style="text-align:center">Start Free.<br><em>Stay If You Love It.</em></h2>
   <div class="pricing-grid">
     <div class="price-card">
       <div class="price-label">Free Trial</div>
-      <div class="price-amount"><sup></sup>Free</div>
+      <div class="price-amount">Free</div>
       <div class="price-period">3 days · No credit card required</div>
       <ul class="price-features">
         <li>Full HD & 4K streaming</li>
@@ -843,21 +855,20 @@
         <li>All World Cup matches</li>
         <li>Cancel before day 3 — no charge</li>
       </ul>
-      <a class="btn-price btn-price-outline" href="YOUR_TRIAL_URL">Start Free Trial</a>
+      <a class="btn-price btn-price-outline" href="https://iptvmojo.com/free-trial">Start Free Trial</a>
     </div>
     <div class="price-card featured">
       <div class="featured-tag">Most Popular</div>
       <div class="price-label">Monthly Plan</div>
-      <!-- REPLACE: update price to your actual monthly price -->
-      <div class="price-amount"><sup>$</sup>14<small style="font-size:28px">.99</small></div>
+      <div class="price-amount"><sup>$</sup>14<small style="font-size:28px;font-weight:900">.99</small></div>
       <div class="price-period">per month · Cancel anytime</div>
       <ul class="price-features">
         <li>Full HD & 4K streaming</li>
         <li>All devices included</li>
-        <li>1000+ live channels</li>
+        <li>50,000+ live channels</li>
         <li>No long-term commitment</li>
       </ul>
-      <a class="btn-price btn-price-main" href="YOUR_TRIAL_URL">Get Started</a>
+      <a class="btn-price btn-price-main" href="https://iptvmojo.com/free-trial">Get Started</a>
     </div>
   </div>
 </div>
@@ -866,28 +877,28 @@
 <div class="dev-section">
   <div class="wrap-sm">
     <p class="eyebrow">Got Questions?</p>
-    <h2 class="sec-hl">Frequently Asked<br>Questions</h2>
+    <h2 class="sec-hl">Frequently Asked <em>Questions</em></h2>
     <div class="faq-list">
-      <details>
-        <summary>Do I need a credit card for the free trial?</summary>
-        <p class="faq-answer">No credit card is required to start your 3-day free trial. Simply sign up with your email, get instant access, and decide later if you'd like to continue. If you don't subscribe before day 3, your access ends automatically — no surprise charges.</p>
-      </details>
-      <details>
-        <summary>What devices can I watch on?</summary>
-        <p class="faq-answer">WatchZone works on Smart TVs (Samsung, LG, Sony), Amazon Firestick, Apple TV, iPhone, Android phones, iPad, Android tablets, Mac, and PC. You can watch on up to 2 devices simultaneously on the standard plan.</p>
-      </details>
-      <details>
-        <summary>What happens after my 3-day free trial ends?</summary>
-        <p class="faq-answer">Once your trial ends, you'll be asked if you'd like to continue with a monthly plan at $14.99/month. If you choose not to subscribe, your access simply ends — there are no automatic charges and no cancellation hoops to jump through.</p>
-      </details>
-      <details>
-        <summary>Can I cancel at any time?</summary>
-        <p class="faq-answer">Yes, absolutely. You can cancel your subscription at any time from your account dashboard with one click. No penalties, no phone calls, no waiting. Your access continues until the end of your current billing period.</p>
-      </details>
-      <details>
-        <summary>What sports and events can I watch?</summary>
-        <p class="faq-answer">WatchZone offers live coverage of football, sports events, and more — including all 104 matches of the 2026 FIFA World Cup. Our catalogue includes live sports from multiple broadcasters so you never miss the big moments.</p>
-      </details>
+      <div class="faq-item">
+        <div class="faq-q">Do I need a credit card for the free trial? <span class="faq-icon">+</span></div>
+        <div class="faq-a">No credit card required to start your 3-day free trial. Simply sign up with your email, get instant access, and decide later if you'd like to continue. If you don't subscribe before day 3, your access ends automatically — no surprise charges.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What devices can I watch on? <span class="faq-icon">+</span></div>
+        <div class="faq-a">WatchZone works on Smart TVs (Samsung, LG, Sony), Amazon Firestick, Apple TV, iPhone, Android phones, iPad, Android tablets, Mac, and PC. You can watch on up to 2 devices simultaneously on the standard plan.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What happens after my free trial ends? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Once your trial ends, you'll be asked if you'd like to continue with a monthly plan. If you choose not to subscribe, your access simply ends — there are no automatic charges and no cancellation hoops to jump through.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I cancel at any time? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Yes, absolutely. You can cancel your subscription at any time from your account dashboard with one click. No penalties, no phone calls, no waiting. Your access continues until the end of your current billing period.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What sports and events can I watch? <span class="faq-icon">+</span></div>
+        <div class="faq-a">WatchZone offers live coverage of football, sports events, and more — including all 104 matches of the 2026 FIFA World Cup from the group stage through the final on July 19 at MetLife Stadium.</div>
+      </div>
     </div>
   </div>
 </div>
@@ -895,10 +906,10 @@
 <!-- FINAL CTA -->
 <div class="final-cta">
   <p class="eyebrow">Don't Miss Another Minute</p>
-  <h2>The Match<br>is <em>Already On.</em></h2>
+  <h2>The Match is<br><em>Already On.</em></h2>
   <p>The whole world is watching. Start your free trial and be part of it — no credit card, no commitment, just football.</p>
-  <div class="hero-cta">
-    <a class="btn-hero" href="YOUR_TRIAL_URL">Start Free Trial →</a>
+  <div class="cta-block">
+    <a class="btn-hero" href="https://iptvmojo.com/free-trial">Start Free Trial →</a>
     <p class="cta-note">
       No credit card required
       <span>·</span>
@@ -911,17 +922,41 @@
 
 <!-- FOOTER -->
 <footer>
-  <a class="footer-brand" href="#">Watch<em>Zone</em></a>
-  <div class="footer-links">
-    <a href="#">Privacy Policy</a>
-    <a href="#">Terms of Service</a>
-    <a href="#">Contact</a>
-    <a href="#">Help</a>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Watch<em>Zone</em></div>
+        <div class="footer-tagline">Live Sports Streaming</div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Service</h5>
+          <a href="https://iptvmojo.com/free-trial">Free Trial</a>
+          <a href="https://iptvmojo.com/pricing.html">Pricing</a>
+          <a href="https://iptvmojo.com/how-it-works.html">How It Works</a>
+        </div>
+        <div class="footer-col">
+          <h5>Legal</h5>
+          <a href="https://iptvmojo.com/privacy-policy.html">Privacy Policy</a>
+          <a href="https://iptvmojo.com/terms-and-conditions.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 WatchZone · All rights reserved. Free trial for new customers only. Personal use. Cancel anytime.</div>
   </div>
-  <!-- REPLACE: update brand name and year -->
-  <p>© 2026 WatchZone · All rights reserved.<br>
-  Free trial available to new customers only. Personal use only. Cancel anytime before the trial period ends to avoid charges.</p>
 </footer>
+
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(x => x.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
 
 </body>
 </html>
