@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Summer Word Search Puzzle Pack</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --sun:#F59E0B;
+      --sky:#0EA5E9;
+      --sea:#0369A1;
+      --sand:#FEF3C7;
+      --white:#FFFFFF;
+      --text:#1E293B;
+      --muted:#64748B;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--white);
+      color:var(--text);
+      font-family:'Plus Jakarta Sans',sans-serif;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* NAV */
+    nav{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:16px 32px;
+      border-bottom:1px solid #E2E8F0;
+      background:#fff;
+      position:sticky;top:0;z-index:100;
+    }
+    .logo{
+      font-weight:900;font-size:20px;color:var(--text);
+      text-decoration:none;letter-spacing:-.3px;
+    }
+    .logo em{color:var(--sun);font-style:normal}
+    .btn-buy{
+      background:var(--sun);color:#1E293B;
+      font-weight:800;font-size:13px;
+      padding:9px 22px;border-radius:30px;
+      text-decoration:none;
+      transition:background .15s,transform .15s;
+      border:none;cursor:pointer;font-family:inherit;
+    }
+    .btn-buy:hover{background:#D97706;transform:translateY(-1px)}
+
+    /* HERO */
+    .hero{
+      background:linear-gradient(135deg,#EFF6FF 0%,#FEF3C7 50%,#E0F2FE 100%);
+      padding:72px 24px 64px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:'☀️';
+      position:absolute;top:24px;right:10%;
+      font-size:72px;opacity:.25;
+    }
+    .hero::after{
+      content:'🌊';
+      position:absolute;bottom:16px;left:8%;
+      font-size:56px;opacity:.2;
+    }
+    .hero-badge{
+      display:inline-block;
+      background:var(--sun);color:#fff;
+      font-size:11px;font-weight:800;
+      letter-spacing:1.5px;text-transform:uppercase;
+      padding:5px 14px;border-radius:100px;
+      margin-bottom:20px;
+    }
+    .hero h1{
+      font-weight:900;
+      font-size:clamp(32px,6vw,62px);
+      line-height:1.05;
+      letter-spacing:-.03em;
+      color:var(--text);
+      margin-bottom:16px;
+    }
+    .hero h1 em{
+      color:var(--sky);
+      font-style:normal;
+    }
+    .hero-sub{
+      font-size:17px;
+      color:var(--muted);
+      max-width:480px;
+      margin:0 auto 36px;
+      line-height:1.7;
+    }
+    .hero-sub strong{color:var(--text);font-weight:700}
+    .price-row{
+      display:flex;align-items:center;justify-content:center;gap:14px;
+      margin-bottom:28px;
+    }
+    .price{
+      font-size:48px;font-weight:900;color:var(--text);line-height:1;
+    }
+    .price sup{font-size:22px;vertical-align:top;margin-top:8px}
+    .price-note{
+      font-size:13px;color:var(--muted);
+      text-align:left;line-height:1.5;
+    }
+    .btn-hero{
+      display:inline-block;
+      background:var(--sun);color:#1E293B;
+      font-weight:900;font-size:19px;
+      padding:17px 52px;border-radius:30px;
+      text-decoration:none;
+      box-shadow:0 8px 28px rgba(245,158,11,.35);
+      transition:background .18s,transform .18s,box-shadow .18s;
+    }
+    .btn-hero:hover{
+      background:#D97706;transform:translateY(-2px);
+      box-shadow:0 12px 36px rgba(245,158,11,.45);
+    }
+    .hero-note{
+      display:block;margin-top:12px;
+      font-size:12px;color:var(--muted);
+    }
+
+    /* PUZZLE PREVIEW */
+    .puzzle-section{
+      padding:80px 24px;
+      background:#fff;
+      text-align:center;
+    }
+    .section-badge{
+      font-size:11px;font-weight:800;letter-spacing:2px;
+      text-transform:uppercase;color:var(--sky);margin-bottom:10px;
+    }
+    .section-title{
+      font-weight:900;font-size:clamp(24px,4vw,38px);
+      letter-spacing:-.02em;color:var(--text);margin-bottom:8px;
+    }
+    .section-sub{
+      font-size:15px;color:var(--muted);margin-bottom:40px;
+    }
+
+    .puzzle-wrap{
+      display:inline-block;
+      background:#F8FAFC;
+      border:2px solid #E2E8F0;
+      border-radius:20px;
+      padding:24px;
+      box-shadow:0 20px 60px rgba(0,0,0,.08);
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(15,1fr);
+      gap:2px;
+      margin-bottom:20px;
+    }
+    .cell{
+      width:34px;height:34px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:13px;font-weight:700;
+      color:var(--text);
+      background:#fff;
+      border-radius:5px;
+      border:1px solid #E8EEF4;
+      user-select:none;
+      cursor:default;
+      transition:background .1s;
+    }
+    .cell:hover{background:#EFF6FF}
+
+    /* Word list */
+    .word-list{
+      display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+      margin-top:6px;
+    }
+    .word-chip{
+      padding:5px 12px;
+      border-radius:100px;
+      background:#EFF6FF;
+      border:1px solid #BFDBFE;
+      font-size:12px;font-weight:700;
+      color:var(--sea);
+      letter-spacing:.5px;
+      text-transform:uppercase;
+    }
+
+    /* FEATURES */
+    .features{
+      background:linear-gradient(135deg,#F0F9FF,#FFFBEB);
+      padding:80px 24px;
+    }
+    .feat-grid{
+      max-width:900px;margin:0 auto;
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:16px;margin-top:40px;
+    }
+    .feat-card{
+      background:#fff;
+      border:1px solid #E2E8F0;
+      border-radius:16px;
+      padding:26px 22px;
+      text-align:left;
+      transition:border-color .2s,transform .2s;
+    }
+    .feat-card:hover{border-color:#93C5FD;transform:translateY(-3px)}
+    .feat-icon{font-size:28px;margin-bottom:12px}
+    .feat-title{font-weight:800;font-size:15px;color:var(--text);margin-bottom:7px}
+    .feat-desc{font-size:13px;color:var(--muted);line-height:1.68}
+
+    /* FINAL CTA */
+    .final{
+      padding:88px 24px;
+      text-align:center;
+      background:#fff;
+    }
+    .final h2{
+      font-weight:900;font-size:clamp(28px,5vw,48px);
+      letter-spacing:-.02em;color:var(--text);margin-bottom:12px;
+    }
+    .final h2 em{color:var(--sky);font-style:normal}
+    .final p{
+      font-size:16px;color:var(--muted);
+      max-width:420px;margin:0 auto 32px;line-height:1.7;
+    }
+
+    /* FOOTER */
+    footer{
+      background:#F8FAFC;
+      border-top:1px solid #E2E8F0;
+      padding:24px;
+      text-align:center;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    @media(max-width:700px){
+      .cell{width:22px;height:22px;font-size:9px;border-radius:3px}
+      .puzzle-wrap{padding:12px}
+      nav{padding:12px 18px}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#">Puzzle<em>Sun</em></a>
+  <a class="btn-buy" href="./free-trial.html">Get Now →</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">☀️ Summer 2026 Edition</div>
+  <h1>The Ultimate<br><em>Summer</em> Word Search</h1>
+  <p class="hero-sub">
+    <strong>50 handcrafted puzzles</strong> for kids and adults.
+    Perfect for the beach, the pool, road trips, and lazy summer afternoons.
+  </p>
+  <div class="price-row">
+    <div class="price"><sup>$</sup>4<span style="font-size:28px">.99</span></div>
+    <div class="price-note">
+      One-time purchase<br>
+      Instant PDF download
+    </div>
+  </div>
+  <a class="btn-hero" href="./free-trial.html">Get Now →</a>
+  <span class="hero-note">✓ Instant download &nbsp;·&nbsp; ✓ Printable &nbsp;·&nbsp; ✓ All ages</span>
+</div>
+
+<!-- PUZZLE PREVIEW -->
+<div class="puzzle-section">
+  <p class="section-badge">Preview</p>
+  <h2 class="section-title">See What's Inside</h2>
+  <p class="section-sub">A sample puzzle from the pack — 14 summer words hidden in every grid.</p>
+
+  <div class="puzzle-wrap">
+    <div class="grid">
+<div class="cell">S</div><div class="cell">U</div><div class="cell">M</div><div class="cell">M</div><div class="cell">E</div><div class="cell">R</div><div class="cell">U</div><div class="cell">D</div><div class="cell">A</div><div class="cell">X</div><div class="cell">I</div><div class="cell">H</div><div class="cell">H</div><div class="cell">E</div><div class="cell">X</div>
+<div class="cell">D</div><div class="cell">V</div><div class="cell">X</div><div class="cell">R</div><div class="cell">C</div><div class="cell">S</div><div class="cell">V</div><div class="cell">A</div><div class="cell">C</div><div class="cell">A</div><div class="cell">T</div><div class="cell">I</div><div class="cell">O</div><div class="cell">N</div><div class="cell">N</div>
+<div class="cell">B</div><div class="cell">A</div><div class="cell">B</div><div class="cell">E</div><div class="cell">A</div><div class="cell">C</div><div class="cell">H</div><div class="cell">C</div><div class="cell">G</div><div class="cell">S</div><div class="cell">H</div><div class="cell">Q</div><div class="cell">T</div><div class="cell">A</div><div class="cell">R</div>
+<div class="cell">S</div><div class="cell">G</div><div class="cell">W</div><div class="cell">U</div><div class="cell">W</div><div class="cell">R</div><div class="cell">N</div><div class="cell">H</div><div class="cell">O</div><div class="cell">H</div><div class="cell">S</div><div class="cell">I</div><div class="cell">Z</div><div class="cell">A</div><div class="cell">Y</div>
+<div class="cell">Z</div><div class="cell">U</div><div class="cell">F</div><div class="cell">W</div><div class="cell">S</div><div class="cell">A</div><div class="cell">N</div><div class="cell">D</div><div class="cell">N</div><div class="cell">E</div><div class="cell">K</div><div class="cell">I</div><div class="cell">E</div><div class="cell">G</div><div class="cell">Y</div>
+<div class="cell">K</div><div class="cell">P</div><div class="cell">N</div><div class="cell">D</div><div class="cell">C</div><div class="cell">M</div><div class="cell">D</div><div class="cell">L</div><div class="cell">L</div><div class="cell">L</div><div class="cell">T</div><div class="cell">I</div><div class="cell">Z</div><div class="cell">B</div><div class="cell">X</div>
+<div class="cell">O</div><div class="cell">A</div><div class="cell">R</div><div class="cell">W</div><div class="cell">A</div><div class="cell">V</div><div class="cell">E</div><div class="cell">D</div><div class="cell">M</div><div class="cell">L</div><div class="cell">C</div><div class="cell">R</div><div class="cell">J</div><div class="cell">U</div><div class="cell">T</div>
+<div class="cell">L</div><div class="cell">L</div><div class="cell">S</div><div class="cell">G</div><div class="cell">W</div><div class="cell">C</div><div class="cell">B</div><div class="cell">V</div><div class="cell">H</div><div class="cell">Y</div><div class="cell">J</div><div class="cell">H</div><div class="cell">C</div><div class="cell">H</div><div class="cell">D</div>
+<div class="cell">M</div><div class="cell">M</div><div class="cell">I</div><div class="cell">O</div><div class="cell">P</div><div class="cell">O</div><div class="cell">O</div><div class="cell">L</div><div class="cell">U</div><div class="cell">L</div><div class="cell">F</div><div class="cell">E</div><div class="cell">L</div><div class="cell">L</div><div class="cell">G</div>
+<div class="cell">V</div><div class="cell">I</div><div class="cell">W</div><div class="cell">V</div><div class="cell">U</div><div class="cell">C</div><div class="cell">T</div><div class="cell">U</div><div class="cell">F</div><div class="cell">R</div><div class="cell">X</div><div class="cell">A</div><div class="cell">H</div><div class="cell">F</div><div class="cell">O</div>
+<div class="cell">M</div><div class="cell">I</div><div class="cell">C</div><div class="cell">O</div><div class="cell">R</div><div class="cell">A</div><div class="cell">L</div><div class="cell">U</div><div class="cell">W</div><div class="cell">R</div><div class="cell">H</div><div class="cell">T</div><div class="cell">V</div><div class="cell">K</div><div class="cell">Y</div>
+<div class="cell">Y</div><div class="cell">B</div><div class="cell">H</div><div class="cell">B</div><div class="cell">Z</div><div class="cell">K</div><div class="cell">M</div><div class="cell">I</div><div class="cell">C</div><div class="cell">G</div><div class="cell">S</div><div class="cell">W</div><div class="cell">K</div><div class="cell">G</div><div class="cell">U</div>
+<div class="cell">P</div><div class="cell">M</div><div class="cell">U</div><div class="cell">R</div><div class="cell">E</div><div class="cell">L</div><div class="cell">A</div><div class="cell">X</div><div class="cell">O</div><div class="cell">E</div><div class="cell">I</div><div class="cell">E</div><div class="cell">H</div><div class="cell">X</div><div class="cell">R</div>
+<div class="cell">R</div><div class="cell">I</div><div class="cell">X</div><div class="cell">S</div><div class="cell">N</div><div class="cell">S</div><div class="cell">M</div><div class="cell">L</div><div class="cell">H</div><div class="cell">E</div><div class="cell">Q</div><div class="cell">P</div><div class="cell">C</div><div class="cell">Y</div><div class="cell">B</div>
+<div class="cell">D</div><div class="cell">E</div><div class="cell">U</div><div class="cell">F</div><div class="cell">Z</div><div class="cell">V</div><div class="cell">N</div><div class="cell">T</div><div class="cell">C</div><div class="cell">M</div><div class="cell">M</div><div class="cell">T</div><div class="cell">O</div><div class="cell">Q</div><div class="cell">I</div>
+    </div>
+    <div class="word-list">
+      <span class="word-chip">Summer</span>
+      <span class="word-chip">Beach</span>
+      <span class="word-chip">Vacation</span>
+      <span class="word-chip">Wave</span>
+      <span class="word-chip">Sand</span>
+      <span class="word-chip">Pool</span>
+      <span class="word-chip">Surf</span>
+      <span class="word-chip">Shell</span>
+      <span class="word-chip">Palm</span>
+      <span class="word-chip">Coral</span>
+      <span class="word-chip">Relax</span>
+      <span class="word-chip">Heat</span>
+      <span class="word-chip">Sun</span>
+      <span class="word-chip">Ice</span>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features">
+  <div style="text-align:center">
+    <p class="section-badge">What You Get</p>
+    <h2 class="section-title">50 Puzzles. One Great Summer.</h2>
+    <p class="section-sub">Everything you need to keep the whole family entertained all season long.</p>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-icon">🎯</div>
+      <div class="feat-title">3 Difficulty Levels</div>
+      <p class="feat-desc">Easy for kids, medium for teens, and expert grids for adults who like a real challenge.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🖨️</div>
+      <div class="feat-title">Print-Ready PDF</div>
+      <p class="feat-desc">Crisp A4 and US Letter format. Print as many copies as you want — perfect for groups.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📱</div>
+      <div class="feat-title">Works on Any Device</div>
+      <p class="feat-desc">Download on your phone, tablet, or laptop. Solve digitally or print and enjoy offline.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🌴</div>
+      <div class="feat-title">100% Summer Themed</div>
+      <p class="feat-desc">Every puzzle is packed with words about sun, sea, holidays, nature, and summer fun.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<div class="final">
+  <h2>Ready for a <em>Sunny</em><br>Summer of Puzzles?</h2>
+  <p>50 puzzles. Instant download. Perfect for kids, adults, and everyone in between.</p>
+  <a class="btn-hero" href="./free-trial.html">Get Now — $4.99 →</a>
+  <span class="hero-note" style="margin-top:14px;display:block">✓ One-time payment &nbsp;·&nbsp; ✓ No subscription &nbsp;·&nbsp; ✓ Instant PDF</span>
+</div>
+
+<footer>
+  <p>© 2026 PuzzleSun · Digital puzzle products · All rights reserved</p>
+</footer>
+
+</body>
+</html>
