@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Free Trial — WatchZone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{--red:#fd0322;--border:rgba(255,255,255,.1);--text:#e8e0ff;--bg:#140438;--card:rgba(255,255,255,.04);--muted:rgba(232,224,255,.6);--navbg:rgba(20,4,56,.97);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;-webkit-font-smoothing:antialiased;min-height:100svh;display:flex;flex-direction:column}
+    a{text-decoration:none;color:inherit}
+
+    nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:14px 32px;background:var(--navbg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+    .brand{font-weight:900;font-size:22px;color:var(--text)}
+    .brand em{background:linear-gradient(90deg,var(--red),#ff6b35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal}
+    .nav-back{font-size:13px;color:var(--muted);font-weight:600;display:flex;align-items:center;gap:6px;transition:color .15s}
+    .nav-back:hover{color:var(--text)}
+
+    .page{flex:1;display:flex;align-items:center;justify-content:center;padding:48px 24px;position:relative;overflow:hidden}
+    .page::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(253,3,34,.14) 0%,transparent 70%);pointer-events:none}
+
+    .form-wrap{width:100%;max-width:480px;position:relative;z-index:1}
+
+    .form-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(253,3,34,.12);border:1px solid rgba(253,3,34,.3);padding:6px 14px;border-radius:100px;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#ff7080;margin-bottom:18px}
+    .pdot{width:7px;height:7px;border-radius:50%;background:var(--red);animation:pulse 1.3s ease-in-out infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.75)}}
+
+    .form-hl{font-weight:900;font-size:clamp(28px,5vw,40px);line-height:1.05;letter-spacing:-.02em;color:#fff;margin-bottom:8px}
+    .form-hl em{background:linear-gradient(90deg,var(--red),#ff6b35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal}
+    .form-sub{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:28px}
+
+    .form-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px 28px}
+
+    .plan-bar{display:flex;align-items:center;justify-content:space-between;background:rgba(253,3,34,.08);border:1px solid rgba(253,3,34,.25);border-radius:12px;padding:14px 18px;margin-bottom:24px}
+    .plan-name{font-size:14px;font-weight:800;color:#fff}
+    .plan-note{font-size:11px;color:var(--muted);margin-top:2px}
+    .plan-price{font-size:26px;font-weight:900;background:linear-gradient(90deg,var(--red),#ff6b35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+    .field{margin-bottom:14px}
+    .label{display:block;font-size:11px;font-weight:700;color:rgba(232,224,255,.5);margin-bottom:5px;letter-spacing:.08em;text-transform:uppercase}
+    .input{width:100%;padding:13px 15px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#fff;font-family:inherit;font-size:14px;outline:none;transition:border-color .2s}
+    .input:focus{border-color:rgba(253,3,34,.45)}
+    .input::placeholder{color:rgba(232,224,255,.28)}
+
+    .btn-submit{width:100%;padding:16px;background:var(--red);border:none;border-radius:30px;color:#fff;font-family:inherit;font-size:16px;font-weight:900;cursor:pointer;transition:background .18s,transform .18s,box-shadow .18s;margin-top:8px}
+    .btn-submit:hover:not(:disabled){background:#c50018;transform:translateY(-2px);box-shadow:0 8px 28px rgba(253,3,34,.4)}
+    .btn-submit:disabled{opacity:.55;cursor:not-allowed;transform:none}
+
+    .form-note{font-size:11px;color:rgba(232,224,255,.3);text-align:center;margin-top:12px;letter-spacing:.3px}
+    .form-note span{color:rgba(253,3,34,.4);margin:0 5px}
+
+    .err-msg{display:none;padding:12px 14px;background:rgba(253,3,34,.1);border:1px solid rgba(253,3,34,.35);border-radius:10px;color:#ff7080;font-size:13px;margin-top:10px}
+
+    /* SUCCESS STATE */
+    .success{display:none;text-align:center;padding:2.5rem 1.5rem}
+    .check-circle{width:88px;height:88px;border-radius:50%;background:rgba(253,3,34,.12);border:3px solid var(--red);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;animation:popIn .5s cubic-bezier(.175,.885,.32,1.275) both}
+    @keyframes popIn{0%{transform:scale(0);opacity:0}100%{transform:scale(1);opacity:1}}
+    .check-svg{width:42px;height:42px;stroke:var(--red);stroke-width:3;fill:none;stroke-dasharray:60;stroke-dashoffset:60;animation:drawCheck .5s .35s ease forwards}
+    @keyframes drawCheck{to{stroke-dashoffset:0}}
+    .suc-title{font-weight:900;font-size:26px;color:#fff;margin-bottom:10px}
+    .suc-sub{font-size:14px;color:var(--muted);line-height:1.7}
+    .suc-sub strong{color:var(--text)}
+    .suc-back{display:inline-block;margin-top:20px;padding:11px 24px;border:1px solid var(--border);border-radius:30px;font-size:13px;font-weight:700;color:var(--text);transition:border-color .15s}
+    .suc-back:hover{border-color:rgba(253,3,34,.4)}
+
+    footer{padding:20px 24px;text-align:center;border-top:1px solid rgba(255,255,255,.05)}
+    footer p{font-size:11px;color:rgba(232,224,255,.2)}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="./index.html">Watch<em>Zone</em></a>
+  <a class="nav-back" href="./index.html">← Back</a>
+</nav>
+
+<div class="page">
+  <div class="form-wrap">
+    <div class="form-badge"><div class="pdot"></div>Free 3-Day Trial</div>
+    <h1 class="form-hl">Claim Your<br><em>Free Trial.</em></h1>
+    <p class="form-sub">Fill in your details and we'll send your access within 5 minutes — directly to your email and WhatsApp.</p>
+
+    <div class="form-card" id="form-card">
+      <div class="plan-bar">
+        <div>
+          <div class="plan-name">Free 3-Day Trial</div>
+          <div class="plan-note">Full access · No credit card · No commitment</div>
+        </div>
+        <div class="plan-price">FREE</div>
+      </div>
+
+      <form id="trial-form" onsubmit="submitForm(event)" novalidate>
+        <div class="field">
+          <label class="label" for="f-name">First Name</label>
+          <input class="input" id="f-name" type="text" placeholder="Your first name" autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label class="label" for="f-email">Email Address</label>
+          <input class="input" id="f-email" type="email" placeholder="your@email.com" autocomplete="email">
+        </div>
+        <div class="field">
+          <label class="label" for="f-wa">WhatsApp Number</label>
+          <input class="input" id="f-wa" type="tel" placeholder="+1 555 000 0000" autocomplete="tel">
+        </div>
+        <button class="btn-submit" id="submit-btn" type="submit">Claim Free Trial →</button>
+        <p class="form-note">No credit card required<span>·</span>Cancel anytime</p>
+        <div class="err-msg" id="err-msg"></div>
+      </form>
+    </div>
+
+    <div class="success" id="success-box">
+      <div class="check-circle">
+        <svg class="check-svg" viewBox="0 0 52 52"><polyline points="14,27 22,36 38,17"/></svg>
+      </div>
+      <div class="suc-title">You're All Set!</div>
+      <p class="suc-sub">Your free trial access is being prepared.<br>Check <strong id="suc-email">your email</strong> and <strong>WhatsApp</strong> — you'll hear from us within 5 minutes.</p>
+      <a class="suc-back" href="./index.html">← Back to Home</a>
+    </div>
+  </div>
+</div>
+
+<footer><p>© 2026 WatchZone · Free trial for new customers only · Personal use only</p></footer>
+
+<script>
+function submitForm(e) {
+  e.preventDefault();
+  const btn  = document.getElementById('submit-btn');
+  const err  = document.getElementById('err-msg');
+
+  const name = document.getElementById('f-name').value.trim();
+  const email= document.getElementById('f-email').value.trim();
+  const wa   = document.getElementById('f-wa').value.trim();
+
+  err.style.display = 'none';
+
+  if (!name) { showErr('Please enter your first name.'); return; }
+  if (!email || !email.includes('@')) { showErr('Please enter a valid email address.'); return; }
+  if (!wa)   { showErr('Please enter your WhatsApp number.'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  const timer = setTimeout(() => showErr('Request timed out. Please try again.'), 25000);
+
+  fetch('https://iptv-trial-iptvmojo.medmaar.workers.dev', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      whatsapp: wa,
+      country: '',
+      device: '',
+      notes: 'WatchZone World Cup 2026 campaign'
+    })
+  })
+  .then(r => r.json())
+  .then(d => {
+    clearTimeout(timer);
+    if (d.success) {
+      document.getElementById('form-card').style.display = 'none';
+      document.querySelector('.form-badge').style.display = 'none';
+      document.querySelector('.form-hl').style.display = 'none';
+      document.querySelector('.form-sub').style.display = 'none';
+      document.getElementById('suc-email').textContent = email;
+      document.getElementById('success-box').style.display = 'block';
+    } else {
+      clearTimeout(timer);
+      showErr('Something went wrong. Please try again or contact us on WhatsApp.');
+    }
+  })
+  .catch(() => {
+    clearTimeout(timer);
+    showErr('Network error. Please check your connection and try again.');
+  });
+
+  function showErr(msg) {
+    btn.disabled = false;
+    btn.textContent = 'Claim Free Trial →';
+    err.textContent = msg;
+    err.style.display = 'block';
+  }
+}
+</script>
+</body>
+</html>
